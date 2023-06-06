@@ -6,13 +6,14 @@ from time import sleep
 import vlc
 import pywinauto as pwa
 import win32gui
+import sys
 
 global media_player
 global lastLang
 global handle
 
 test = 0
-short = 1
+short = 0
 scale = 0.25
 lastLang = -1
 
@@ -22,9 +23,9 @@ def eng(temp=None):
     lastLang = 1
     #media_player = vlc.MediaPlayer()
     if short:
-        media = vlc.Media("en.mp4")
+        media = vlc.Media("lib/en.mp4")
     else:
-        media = vlc.Media("eng.mp4")
+        media = vlc.Media("lib/eng.mp4")
     media_player.set_media(media)
     if not test:
         media_player.toggle_fullscreen()
@@ -39,9 +40,9 @@ def sve(temp=None):
     #media_player = vlc.MediaPlayer()
     #media_player.play()
     if short:
-        media = vlc.Media("sv.mp4")
+        media = vlc.Media("lib/sv.mp4")
     else:
-        media = vlc.Media("sve.mp4")
+        media = vlc.Media("lib/sve.mp4")
     media_player.set_media(media)
     if not test:
         media_player.toggle_fullscreen()
@@ -138,13 +139,16 @@ def hide(temp=0):
     actb.grid_forget()
     hideb.grid_forget()
 
+def closeP(temp=0):
+    sys.exit(0)
+
 w = tk.Tk()
 width, height = w.winfo_screenwidth(),w.winfo_screenheight()
 w.configure(bg='black')
 media_player = vlc.MediaPlayer()
 handle = getAppHandle()
-svi = tk.PhotoImage(file="sv.png")
-eni = tk.PhotoImage(file="gb.png")
+svi = tk.PhotoImage(file="lib/sv.png")
+eni = tk.PhotoImage(file="lib/gb.png")
 svb = tk.Button(w, image = svi, command=svbtn)
 enb = tk.Button(w, image = eni, command=enbtn)
 space = tk.Label(w, width=int(width/200), height=int(height/50))
@@ -169,8 +173,8 @@ playb = tk.Button(w, text="Play", command=playbtn)
 restartb = tk.Button(w, text="Restart", command=restartbtn)
 closeb = tk.Button(w, text="Close")
 closeb.bind('<Button-1>', closebtn)
-closeb.bind('<Button-2>', exit)
-closeb.bind('<Button-3>', exit)
+closeb.bind('<Button-2>', closeP)
+closeb.bind('<Button-3>', closeP)
 actb = tk.Button(w, text= "Activate", command=actPlayer)
 hideb = tk.Button(w, text="Hide", command=hide)
 
