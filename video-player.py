@@ -143,6 +143,7 @@ def closeP(temp=0):
     sys.exit(0)
 
 w = tk.Tk()
+w.title('Video Player')
 width, height = w.winfo_screenwidth(), w.winfo_screenheight()
 if width > 1920 or height > 1080:
     width, height = 1920, 1080
