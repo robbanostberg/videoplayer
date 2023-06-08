@@ -81,7 +81,7 @@ def actPlayer(temp=0):
 
 def play(lang=-1): # 0 = swedish, 1 = english, 2 = play a paused video, 3 = pause, 4 = restart, 5 = close player
     global media_player
-    print(media_player.get_state())
+    #print(media_player.get_state())
     #state = [media_player.get_state()==vlc.State.Error, media_player.get_state()==vlc.State.Ended,
      #         media_player.get_state()==vlc.State.Opening, media_player.get_state()==vlc.State.Paused, 
       #        media_player.get_state()==vlc.State.Playing, media_player.get_state()==vlc.State.Stopped]
@@ -143,7 +143,10 @@ def closeP(temp=0):
     sys.exit(0)
 
 w = tk.Tk()
-width, height = w.winfo_screenwidth(),w.winfo_screenheight()
+width, height = w.winfo_screenwidth(), w.winfo_screenheight()
+if width > 1920 or height > 1080:
+    width, height = 1920, 1080
+#print(width, height)
 w.configure(bg='black')
 media_player = vlc.MediaPlayer()
 handle = getAppHandle()
@@ -185,7 +188,7 @@ for btn in btns:
     btn['font'] = bfont
 
 width, height = w.winfo_screenwidth(),w.winfo_screenheight()
-w.geometry('%dx%d%+d+%d'%(width, height, width - 8, -30)) # width x height + xpad + ypad
+w.geometry('%dx%d%+d+%d'%(width, height, width - 8, -31)) # width x height + xpad + ypad
 
 w.resizable(False, False)
 
