@@ -10,7 +10,7 @@ import sys
 
 global media_player
 global lastLang
-global handle
+#global handle
 
 test = 0
 short = 0
@@ -68,7 +68,7 @@ def restartbtn(temp=0):
 def closebtn(temp=0):
     play(5)
 
-def getAppHandle(temp=0):
+'''def getAppHandle(temp=0):
     win = pwa.findwindows.find_windows(title_re="VLC")
     #print(win)
     #win = win32gui.EnumWindows()
@@ -77,7 +77,7 @@ def getAppHandle(temp=0):
 def actPlayer(temp=0):
     global handle
     win32gui.SetForegroundWindow(handle)
-    
+    '''
 
 def play(lang=-1): # 0 = swedish, 1 = english, 2 = play a paused video, 3 = pause, 4 = restart, 5 = close player
     global media_player
@@ -150,7 +150,7 @@ if width > 1920 or height > 1080:
 #print(width, height)
 w.configure(bg='black')
 media_player = vlc.MediaPlayer()
-handle = getAppHandle()
+#handle = getAppHandle()
 svi = tk.PhotoImage(file="lib/sv.png")
 eni = tk.PhotoImage(file="lib/gb.png")
 svb = tk.Button(w, image = svi, command=svbtn)
@@ -179,7 +179,7 @@ closeb = tk.Button(w, text="Close")
 closeb.bind('<Button-1>', closebtn)
 closeb.bind('<Button-2>', closeP)
 closeb.bind('<Button-3>', closeP)
-actb = tk.Button(w, text= "Activate", command=actPlayer)
+actb = tk.Button(w, text= "Activate" ''', command=actPlayer''')
 hideb = tk.Button(w, text="Hide", command=hide)
 
 bfont = font.Font(size=20)
